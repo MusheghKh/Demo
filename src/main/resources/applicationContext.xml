@@ -14,4 +14,7 @@
     <context:component-scan base-package="org.example.demo"/>
 
     <mvc:annotation-driven/>
+
+    <import resource="data-source-cfg.xml" />
+    <import resource="json-config.xml" />
 </beans>
