@@ -17,4 +17,5 @@
 
     <import resource="data-source-cfg.xml" />
     <import resource="json-config.xml" />
+    <import resource="common-beans.xml" />
 </beans>
