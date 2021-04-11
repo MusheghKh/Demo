@@ -39,12 +39,17 @@ public class CustomerController {
     }
 
     @GetMapping("/search")
-    public List<Customer> searchForCustomer(@RequestParam("query") String query) {
+    public List<Customer> searchForCustomer(@RequestParam(name = "query", value = "query", required = false, defaultValue = "") String query) {
         return customerRepository.findByFirstnameAndLastname(query);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
+        Customer customerFromDb = customerRepository.findOne(id);
+        if (customerFromDb == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         customer.setId(id);
         customerRepository.update(customer);
         return ResponseEntity.ok().build();

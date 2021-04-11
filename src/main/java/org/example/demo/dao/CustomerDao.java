@@ -32,7 +32,7 @@ public class CustomerDao {
     public List<Customer> findByFirstNameAndLastName(String query) {
         String sql = "SELECT * FROM customer WHERE firstname LIKE ? OR lastname LIKE ?";
 
-        return jdbcTemplate.query(sql, new CustomerRowMapper(), query, query);
+        return jdbcTemplate.query(sql, new CustomerRowMapper(), '%' + query + '%', '%' + query + '%');
     }
 
     public void insert(Customer customer) {
