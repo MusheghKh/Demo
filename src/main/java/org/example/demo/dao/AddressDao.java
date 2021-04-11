@@ -58,4 +58,10 @@ public class AddressDao {
 
         jdbcTemplate.update(sql, addressId);
     }
+
+    public void deleteCustomerAddresses(Long customerId) {
+        String sql = "DELETE FROM address WHERE customer_id = ?";
+
+        jdbcTemplate.update(sql, customerId);
+    }
 }

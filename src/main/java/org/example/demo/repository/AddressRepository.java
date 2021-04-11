@@ -44,4 +44,8 @@ public class AddressRepository {
     public void delete(Long addressId) {
         addressDao.delete(addressId);
     }
+
+    public void deleteCustomersAddresses(Long customerId) {
+        addressDao.deleteCustomerAddresses(customerId);
+    }
 }

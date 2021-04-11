@@ -62,16 +62,16 @@ public class AddressController {
             @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam("address") String address
     ) {
+        Address addressInDb = addressRepository.findOne(id);
+        if (addressInDb == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Address newAddress = new Address();
         newAddress.setAddress(address);
         newAddress.setId(id);
 
         if (file != null) {
-            Address addressInDb = addressRepository.findOne(id);
-            if (addressInDb == null) {
-                return ResponseEntity.badRequest().build();
-            }
-
             ControllerUtils.deleteFile(addressInDb.getDocumentName());
 
             String newFilename = UUID.randomUUID().toString() + '.' + FilenameUtils.getExtension(file.getOriginalFilename());;
